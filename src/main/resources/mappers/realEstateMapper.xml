@@ -19,4 +19,40 @@
  	 WHERE
  	 	`id`= #{id}
  	 </select>
+ 	 
+ 	 <select id="selectRealEstate1" parameterType="Integer" resultType="com.quiz.lesson03.model.RealEstate">
+ 	 SELECT
+ 	 	`id`
+ 	 	,`realtorId`
+ 	 	,`address`
+ 	 	,`area`
+ 	 	,`type`
+ 	 	,`price`
+ 	 	,`rentPrice`
+ 	 	,`createdAt`
+ 	 	,`updatedAt`
+ 	 FROM
+ 	 	`real_estate`
+ 	 WHERE
+ 	 	`rentPrice` &lt; #{rentPrice}
+ 	 </select>
+ 	 
+ 	 <select id="selectRealEstate2" resultType="com.quiz.lesson03.model.RealEstate">
+ 	 SELECT
+ 	 	`id`
+ 	 	,`realtorId`
+ 	 	,`address`
+ 	 	,`area`
+ 	 	,`type`
+ 	 	,`price`
+ 	 	,`rentPrice`
+ 	 	,`createdAt`
+ 	 	,`updatedAt`
+ 	 FROM
+ 	 	`real_estate`
+ 	 WHERE
+ 	 	`area` &gt;= #{area}
+ 	 	AND
+ 	 	`price` &lt;= #{price}
+ 	 </select>
  </mapper>

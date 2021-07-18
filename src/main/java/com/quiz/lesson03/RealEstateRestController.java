@@ -9,28 +9,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quiz.lesson03.bo.RealEstateBO;
-import com.quiz.lesson03.bo.RealEstateBO1;
-import com.quiz.lesson03.bo.RealEstateBO2;
 import com.quiz.lesson03.model.RealEstate;
 
 @RestController
 @RequestMapping("/lesson03/quiz01")
 public class RealEstateRestController {
 	
+	// 1. id 로 select 하기 
 	@Autowired
 	RealEstateBO realEstateBO;
-		
-	
-	// 1. id 로 select 하기 
 	@RequestMapping("/1")
 	public RealEstate quiz01(
 			@RequestParam(value="id", defaultValue="1")int id
 	) {
 		return realEstateBO.getRealEstate(id);
 	}
-	@Autowired
-	private RealEstateBO1 realEstateBO1;
+	
 	// 2. 월세 조건 select
+	@Autowired
+	private RealEstateBO realEstateBO1;
 	@RequestMapping("/2")
 	public List<RealEstate> quiz02(
 			@RequestParam(value="rentPrice", required=false) Integer rentPrice
@@ -43,13 +40,12 @@ public class RealEstateRestController {
 	
 	// 3. 복합조건 select
 	@Autowired
-	private RealEstateBO2 realEstateBO2;
-	
+	private RealEstateBO realEstateBO2;
 	@RequestMapping("/3")
 	public List<RealEstate> quiz03(
 			@Param(value="area") int area, @Param(value="price") int price 
 			){
-		return realEstateBO2.getRealEstate(area, price);
+		return realEstateBO2.getRealEstate2(area, price);
 	}
 	
 }
