@@ -40,6 +40,9 @@ public class RealEstateRestController {
 		return realEstateBO.getRealEstateListByAreaAndPrice(area, price);
 	}
 	
+	// 파일 바로 열기 : ctrl + shift + r
+	// 파일에서 검색어 찾기 : ctrl + h
+	
 	// insert 1. 객체로 insert 하기
 	@RequestMapping("/lesson03/quiz02/1")
 	public String quiz02_1() {
@@ -57,9 +60,30 @@ public class RealEstateRestController {
 	// insert 2. field 로 insert 하기
 	@RequestMapping("/lesson03/quiz02/2")
 	public String quiz02_2(
-			@RequestParam("realtorId") int realtorId) {
+			@RequestParam("realtor_id") int realtorId) {
 		int row = realEstateBO.insertRealEstateAsField(realtorId, "썅떼빌리버 오피스텔 814호", 45, "월세", 100000, 120);
 		return "입력 성공 : " + row;
+	}
+	
+	// update
+	//요청 URL : http://localhost:88/lesson03/quiz03/1?id=8&type=전세&price=70000
+	@RequestMapping("/lesson03/quiz03/1")
+	public String quiz03_1(
+			@RequestParam("id") int id,
+			@RequestParam("type") String type,
+			@RequestParam("price") int price) {
+		
+		int row = realEstateBO.updateRealEstate(id, type, price);
+		return "수정 성공" + row;
+	}
+	
+	// delete
+	// 요청 URL : http://localhost:88/lesson03/quiz04/1?id=27
+	@RequestMapping("/lesson03/quiz04/1")
+	public String quiz04_1(
+			@RequestParam("id") int id) {
+		int row = realEstateBO.deleteRealEstate(id);
+		return "삭제 성공" + row;
 	}
 	
 }
