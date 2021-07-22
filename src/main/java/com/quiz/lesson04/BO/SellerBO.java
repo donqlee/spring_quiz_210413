@@ -14,7 +14,10 @@ public class SellerBO {
 	public void addSeller(String nickname, String profileImageUrl, double temperature) {
 			sellerDAO.insertSeller(nickname, profileImageUrl, temperature);
 	}
-	public Seller getSeller(Integer id) {
-		return sellerDAO.selectSeller(id);
+	public Seller getSellerById(Integer id) {
+		return sellerDAO.selectSellerById(id);
+	}
+	public Seller getLastSeller() {
+		return sellerDAO.selectLastSeller();
 	}
 }

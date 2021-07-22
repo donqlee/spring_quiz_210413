@@ -34,10 +34,16 @@ public class SellerController {
 	}
 	@GetMapping("/seller_info")
 	public String getSellerView(
-			Model model,
-			@RequestParam(value = "id", defaultValue="1") Integer id
+			@RequestParam(value = "id", required=false) Integer id
+			, Model model
 			) {
-		Seller seller = sellerBO.getSeller(id);
+		Seller seller = null;
+		if (id != null) {
+			seller = sellerBO.getSellerById(id);
+		}else {
+			seller = sellerBO.getLastSeller();
+		}
+			
 		model.addAttribute("result", seller);
 		return "lesson04/sellerInfo";
 	}
