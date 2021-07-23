@@ -35,6 +35,6 @@ public class RealtorController {
 		model.addAttribute("result", newRealtor);
 		model.addAttribute("subject", "공인중개사 정보");
 		
-		return "/lesson04/afterAddRealtor";
+		return "lesson04/afterAddRealtor";
 	}
 }
