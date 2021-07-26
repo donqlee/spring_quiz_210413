@@ -22,7 +22,7 @@
 	<h3>나누기:${number1 / number2}</h3>
 	
 	<h1>3. JSTL core out</h1>
-	<c:out value="<title>core out</title>" />
+	<c:out value="<title>core out</title>" /
 	
 	<h1>4. JSTL core if</h1>
 	<c:set var="average" value="${(number1 + number2) / 2 }" />
