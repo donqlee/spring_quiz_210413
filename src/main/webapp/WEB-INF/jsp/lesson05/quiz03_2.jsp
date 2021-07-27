@@ -42,7 +42,10 @@
 					<tr>
 						<td>${bill.store}</td>
 						<td><fmt:formatNumber value="${bill.pay}" type="currency" /></td>
-						<td><fmt:parseDate value="${bill.date}" var="pattern1" pattern="yyyy-MM-dd" /><fmt:formatDate value="${pattern1}" pattern="yyyy년 M월 dd일" /></td>
+						<td>
+							<fmt:parseDate value="${bill.date}" var="date" pattern="yyyy-MM-dd" />
+							<fmt:formatDate value="${date}" pattern="yyyy년 M월 dd일" />
+						</td>
 						<td>${bill.installment}</td>
 					</tr>
 					</c:forEach>
