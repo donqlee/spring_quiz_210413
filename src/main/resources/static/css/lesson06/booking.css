@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+nav{
+	height: 45px;
+	background: #E3871F;
+}
+h2{
+	font-weight: 900;
+}
+.contents {
+	width: 500px;
+	margin: auto;
+}
+footer {
+	font-size: 12px;
+}

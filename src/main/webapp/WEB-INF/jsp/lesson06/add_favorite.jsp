@@ -25,20 +25,49 @@
 <body>
 	<div class="container">
 		<h1>즐겨찾기 추가하기</h1>
-		<div>제목</div>
+		<label for="name"><div>제목</div></label>
 		<input type="text" class="form-control" id="name">
-		<div>주소</div>
-		<input type="text" class="form-control" id="url">
+		
+		<label for="url"><div>주소</div></label>
+		<div class="d-flex">
+		<input type="text" class="form-control col-80% mr-4" id="url">
+		<input type="button" class="form-control btn btn-info col-1" id="checkBtn" value="중복확인">
+		</div>
+		<div id="statusArea"></div>
 		<input type="button" class="btn btn-success form-control mt-3"  id="addBtn" value="추가">
 	</div>
 	<script>
 		$(document).ready(function(){
+			$('#checkBtn').on('click', function(){
+				$('#statusArea').empty();
+				let url = $('#url').val().trim();
+				if(url==''){
+					$('#statusArea').append("<small class='text-danger'>url이 비어있습니다.</small>")
+				};
+				$.ajax({
+					type:'get'
+					, data: {'url': url}
+					, url: '/lesson06/quiz02/is_duplication'
+					, success: function(data){
+						//alert(data.is_duplication);
+						if(data.is_duplication == true){
+							$('#statusArea').append("<small class='text-danger'>이미 등록된 url 입니다.</small>")
+						}
+					}
+					, error: function(e){
+						alert("error" + e);
+					}
+					
+				})
+			});
+			
+			
 			$('#addBtn').on('click', function(e){
 			
 			// validation check
 			let name = $('#name').val().trim();
 			if(name==''){
-				alert('이름을 입력해주세요.');
+				alert('제목을 입력해주세요.');
 				return;
 			}
 			let url = $('#url').val().trim();
@@ -46,20 +75,24 @@
 				alert('url을 입력해주세요.');
 				return;
 			}
+	 		if(url.startsWith("http") === false && url.startsWith("https") === false){
+				alert("주소 형식이 잘못되었습니다.");
+				return;
+			} 
 			$.ajax({
 				type: 'POST'
 				, url: '/lesson06/quiz01/add_favorite'
 				, data: {'name':name, 'url':url}
+				, dataType: 'json' 
 				, success: function(data){
+					//alert(data);
+					alert(data.result);
 					location.href = "/lesson06/quiz01/favorite_view";
-				}, complete: function(data){
-					alert("완료");
 				}, error: function(e){
 					alert("error" + e);
 				}
 			});	
-			})
-			
+			})	
 		});
 	</script>
 </body>

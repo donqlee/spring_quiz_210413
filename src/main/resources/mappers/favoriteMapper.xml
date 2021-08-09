@@ -29,4 +29,19 @@
  			, NOW()
  		)
  	 </insert>
+ 	 <select id="existUrl" parameterType="string" resultType="boolean">
+ 	 	SELECT
+ 	 		COUNT(1)
+ 	 	FROM
+			`favorite`
+		WHERE
+			`url` = #{url} 	 
+ 	 </select>
+ 	 <delete id="deleteFavoriteById">
+ 	 	DELETE
+ 	 	FROM
+ 	 		`favorite`
+ 	 	WHERE
+ 	 		`id` = #{id}	
+ 	 </delete>
  </mapper>

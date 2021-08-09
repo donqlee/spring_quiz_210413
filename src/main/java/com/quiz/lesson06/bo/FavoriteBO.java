@@ -16,7 +16,15 @@ public class FavoriteBO {
 	public List<Favorite> getFavorite(){
 		return favoriteDAO.selectFavorite();
 	}
-	public void addFavorite(Favorite favorite) {
-		favoriteDAO.insertFavorite(favorite);
+	public void addFavorite(String name, String url) {
+		favoriteDAO.insertFavorite(name, url);
+	}
+	
+	public boolean existUrl(String url) {
+		return favoriteDAO.existUrl(url);
+	}
+	
+	public int deleteFavoriteById(int id) {
+		return favoriteDAO.deleteFavoriteById(id);
 	}
 }
